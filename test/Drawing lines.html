@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>hello</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="shortcut icon" href="favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 默认使用webkit内核 -->
+  <meta name="renderer" content="webkit">
+  <!-- 禁止搜索引擎转码 -->
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link href="" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%
+    }
+
+    #info {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+      z-index: 100;
+      display: block;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="info">Description</div>
+  <script src="../three.js"></script>
+  <script>
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 500);
+    camera.position.set(0, 0, 100);
+    camera.lookAt(0, 0, 0);
+
+    var scene = new THREE.Scene();
+
+    //create a blue LineBasicMaterial
+    var material = new THREE.LineBasicMaterial({ color: 0x0000ff });
+
+    var geometry = new THREE.Geometry();
+    geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
+    geometry.vertices.push(new THREE.Vector3(0, 10, 0));
+    geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+
+    var line = new THREE.Line(geometry, material);
+
+    scene.add(line);
+    renderer.render(scene, camera);
+  </script>
+</body>
+
+</html>
